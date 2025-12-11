@@ -82,4 +82,3 @@ cd ~/JavaScript_metodos-array
 ## 📝 Observações
 
 * Este projeto foi criado para fins **educacionais**, focado em aprimorar a lógica e o uso de métodos JavaScript.
-* A interface é **responsiva** e segue boas práticas de estilo e CSS moderno.
