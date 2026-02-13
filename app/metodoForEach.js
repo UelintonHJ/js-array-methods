@@ -1,14 +1,18 @@
 const elementoParaInserirLivros = document.getElementById('livros')
 const elementoComValorTotalDeLivrosDisponiveis = document.getElementById('valor_total_livros_disponiveis')
 
-function exibirOsLivrosNaTela(listaDeLivros) {
+function renderizarLivros(lista) {
   elementoParaInserirLivros.innerHTML = ''
 
-  listaDeLivros.forEach(livro => {
-    let disponibilidade = livro.quantidade > 0 ? 'livro__imagens' : 'livro__imagens indisponivel'
+  lista.forEach(livro => {
+    const disponibilidadeClasse =
+      livro.quantidade > 0
+        ? 'livro__imagens'
+        : 'livro__imagens indisponivel'
+
     elementoParaInserirLivros.innerHTML += `
         <div class="livro">
-        <img class="${disponibilidade}" src="${livro.imagem}" alt="${livro.alt}" />
+        <img class="${disponibilidadeClasse}" src="${livro.imagem}" alt="${livro.alt}" />
         <h2 class="livro__titulo"> ${livro.titulo} </h2>
         <p class="livro__descricao">${livro.autor}</p>
         <p class="livro__preco" id="preco">R$${livro.preco.toFixed(2)}</p>
@@ -18,14 +22,23 @@ function exibirOsLivrosNaTela(listaDeLivros) {
       </div>
         `
   })
+}
 
-  const valorTotalNumero = listaDeLivros.filter(livro => livro.quantidade > 0).reduce((acc, livro) => acc + Number(livro.preco || 0), 0)
+function calcularTotalDisponiveis(lista) {
+  return lista
+    .filter(livro => livro.quantidade > 0)
+    .reduce((acc, livro) => acc + Number(livro.preco || 0), 0)
+}
 
-  const valorTotalFormatado = valorTotalNumero.toFixed(2).replace('.', ',')
+function renderizarTotal(valor) {
+  const valorFormatado = valor.toFixed(2).replace('.', ',')
 
   elementoComValorTotalDeLivrosDisponiveis.innerHTML = `
     <div class="livros__disponiveis"> 
-      <p>Todos os livros desta categoria por R$ <span id="valor">${valorTotalFormatado}</span></p>
+      <p>
+        Todos os livros desta categoria por 
+        R$ <span id="valor">${valorFormatado}</span>
+      </p>
     </div>
   `
 }

@@ -13,5 +13,11 @@ atualizarTela()
 }
 
 function atualizarTela() {
-    exibirOsLivrosNaTela(state.livrosFiltrados)
+    const lista = state.livrosFiltrados
+
+    renderizarLivros(lista)
+
+    const total = calcularTotalDisponiveis(lista)
+
+    renderizarTotal(total)
 }
