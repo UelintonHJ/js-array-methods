@@ -2,16 +2,11 @@ const elementoParaInserirLivros = document.getElementById('livros')
 const elementoComValorTotalDeLivrosDisponiveis = document.getElementById('valor_total_livros_disponiveis')
 
 function renderizarLivros(lista) {
-  elementoParaInserirLivros.innerHTML = ''
+  const html = lista.map(livro => {
+    const disponibilidadeClasse = livro.quantidade > 0 ? 'livro__imagens' : 'livro__imagens indisponivel';
 
-  lista.forEach(livro => {
-    const disponibilidadeClasse =
-      livro.quantidade > 0
-        ? 'livro__imagens'
-        : 'livro__imagens indisponivel'
-
-    elementoParaInserirLivros.innerHTML += `
-        <div class="livro">
+    return `
+     <div class="livro">
         <img class="${disponibilidadeClasse}" src="${livro.imagem}" alt="${livro.alt}" />
         <h2 class="livro__titulo"> ${livro.titulo} </h2>
         <p class="livro__descricao">${livro.autor}</p>
@@ -20,8 +15,10 @@ function renderizarLivros(lista) {
           <span class="tag">${livro.categoria}</span>
         </div>
       </div>
-        `
-  })
+    `;
+  }).join('');
+
+  elementoParaInserirLivros.innerHTML = html;
 }
 
 function calcularTotalDisponiveis(lista) {

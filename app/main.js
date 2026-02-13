@@ -13,11 +13,9 @@ atualizarTela()
 }
 
 function atualizarTela() {
-    const lista = state.livrosFiltrados
+    const lista = state.livrosFiltrados;
 
-    renderizarLivros(lista)
-
-    const total = calcularTotalDisponiveis(lista)
-
-    renderizarTotal(total)
+    renderizarLivros(lista);
+    const total = calcularTotalDisponiveis(lista);
+    renderizarTotal(total);
 }
