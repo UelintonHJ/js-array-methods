@@ -1,11 +1,15 @@
-let btnOdenarPorPreco = document.getElementById('btnOrdenarPorPreco')
-btnOdenarPorPreco.addEventListener('click', ordenarLivrosPorPreco)
+const btnOdenarPorPreco = document.getElementById('btnOrdenarPorPreco');
+btnOdenarPorPreco.addEventListener('click', aplicarOrdenacaoPorPreco);
 
-function ordenarLivrosPorPreco() {
-    state.ordenacaoAtual = 'preco'
-
-    state.livrosFiltrados = [...state.livrosFiltrados]
-        .sort((a, b) => a.preco - b.preco)
-
-    atualizarTela()
+function ordenarPorPreco(lista) {
+    return [...lista].sort((a, b) => a.preco - b.preco);
 }
+
+function aplicarOrdenacaoPorPreco() {
+    state.ordenacaoAtual = 'preco';
+
+    state.livrosFiltrados = ordenarPorPreco(state.livrosFiltrados);
+
+    atualizarTela();
+}
+
