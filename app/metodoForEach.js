@@ -2,8 +2,20 @@ const elementoParaInserirLivros = document.getElementById('livros')
 const elementoComValorTotalDeLivrosDisponiveis = document.getElementById('valor_total_livros_disponiveis')
 
 function renderizarLivros(lista) {
+  if(!lista.length) {
+    elementoParaInserirLivros.innerHTML = `
+      <p class="empty-state">
+        Nenhum livro encontrado para o filtro selecionado.
+      </p>
+    `;
+    return;
+  }
+
   const html = lista.map(livro => {
-    const disponibilidadeClasse = livro.quantidade > 0 ? 'livro__imagens' : 'livro__imagens indisponivel';
+    const disponibilidadeClasse = 
+      livro.quantidade > 0 
+      ? 'livro__imagens' 
+      : 'livro__imagens indisponivel';
 
     return `
      <div class="livro">
