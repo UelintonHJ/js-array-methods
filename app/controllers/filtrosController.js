@@ -14,27 +14,37 @@ export function registrarEventos(atualizarTela) {
     const btnOrdenar = document.getElementById('btnOrdenarPorPreco');
 
     btnFront.addEventListener('click', () => {
+        ativarBotao(btnFront);
         state.livrosFiltrados = filtrarPorCategoria(state.livros, 'front-end');
         atualizarTela();
     });
 
     btnBack.addEventListener('click', () => {
+        ativarBotao(btnBack);
         state.livrosFiltrados = filtrarPorCategoria(state.livros, 'back-end');
         atualizarTela();
     });
 
     btnDados.addEventListener('click', () => {
+        ativarBotao(btnDados);
         state.livrosFiltrados = filtrarPorCategoria(state.livros, 'dados');
         atualizarTela();
     });
 
     btnDisponiveis.addEventListener('click', () => {
-        state.livrosFiltrados = filtrarPorDisponibilidade(state.livrosFiltrados);
+        ativarBotao(btnDisponiveis);
+        state.livrosFiltrados = filtrarPorDisponibilidade(state.livros);
         atualizarTela();
     });
 
     btnOrdenar.addEventListener('click', () => {
-        state.livrosFiltrados = ordenarPorPreco(state.livrosFiltrados);
+        ativarBotao(btnOrdenar);
+        state.livrosFiltrados = ordenarPorPreco([...state.livrosFiltrados]);
         atualizarTela();
     });
+}
+
+function ativarBotao(btn) {
+    document.querySelectorAll('.btn').forEach(b => b.classList.remove('btn--ativo'));
+    btn.classList.add('btn--ativo');
 }

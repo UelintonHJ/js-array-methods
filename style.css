@@ -12,54 +12,53 @@
 
 body {
   font-family: 'Poppins';
+  overflow-x: hidden;
 }
 
 .wrap {
   width: 1280px;
+  width: 90%;
   margin: 0 auto;
 }
 
 .header {
-  text-align: center;
-  width: 100%;
-  background-color: var(--bg-color);
-  margin: 15px 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
 }
 
 .banner {
   background-image: url('imagens/Banner-1.png');
-  background-repeat: no-repeat;
   background-size: cover;
-  height: 278px;
+  background-position: center;
+  height: 300px;
 }
 
 .nav {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 30px;
-  margin: 4rem 0;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin: 2rem 0;
+  list-style: none;
+  padding: 0;
 }
 
 .btn {
   background-color: var(--button-color);
   border: none;
   cursor: pointer;
-  height: 44px;
-  text-decoration: none;
-  color: #fff;
   padding: 10px 16px;
   border-radius: 8px;
+  color: #fff;
   font-size: 0.9rem;
-  font-family: 'Poppins';
-  font-style: normal;
-  font-weight: 400;
+  transition: all 0.2s ease;
 }
 
 .btn:hover {
-  color: #cecdcd;
-  border-radius: 10px;
-  border-bottom: 2px solid var(--text-description-color);
+  transform: translateY(-2px);
+  opacity: 0.9;
 }
 
 .btn--ativo {
@@ -77,18 +76,32 @@ body {
 }
 
 .livros {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2.5rem;
+  margin-bottom: 3rem;
 }
 
 .livro {
-  width: 302px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 644px;
-  margin-bottom: 1rem;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.livro:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.livro img {
+  width: 100%;
+  height: 320px;
+  object-fit: contain;
 }
 
 .indisponivel {
@@ -171,4 +184,30 @@ body {
   color: #fff;
   font-weight: 500;
   line-height: 24px;
+}
+
+@media (max-width: 768px) {
+  .banner {
+    height: 180px;
+    background-position: center;
+  }
+
+  .nav {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.7rem;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .livros {
+    grid-template-columns: 1fr;
+  }
+
+  .livros__disponiveis p {
+    font-size: 1.5rem;
+  }
 }
