@@ -1,21 +1,24 @@
-const endpointDaAPI = 'https://guilhermeonrails.github.io/casadocodigo/livros.json'
+import {
+    buscarLivros,
+    aplicarDesconto
+} from './services/livrosService.js';
+
+import { renderizarLivros, renderizarTotal } from './ui/render.js';
+import { state } from './state.js';
+import { registrarEventos } from './controllers/filtrosController.js';
 
 init()
+registrarEventos(atualizarTela)
 
 async function init() {
-const res = await fetch(endpointDaAPI)
-const data = await res.json()
-
+const data = await buscarLivros();
 state.livros = aplicarDesconto(data)
-state.livrosFiltrados = state.livros
+state.livrosFiltrados = state.livros;
 
-atualizarTela()
+atualizarTela();
 }
 
 function atualizarTela() {
-    const lista = state.livrosFiltrados;
-
-    renderizarLivros(lista);
-    const total = calcularTotalDisponiveis(lista);
-    renderizarTotal(total);
+    renderizarLivros(state.livrosFiltrados);
+    renderizarTotal(state.livrosFiltrados);
 }
