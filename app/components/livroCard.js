@@ -6,7 +6,7 @@ export function criarLivroCard(livro) {
 
     return `
         <div class="livro">
-            <img class="${disponibilidadeClasse}" src="${livro.imagem}" alt="${livro.alt}" />
+            <img class="${disponibilidadeClasse}" src="${livro.imagem.replace('/imagens', 'imagens')}" alt="${livro.alt}" />
             <h2 class="livro__titulo">${livro.titulo}</h2>
             <p class="livro__descricao">${livro.autor}</p>
             <p class="livro__preco">R$${livro.preco.toFixed(2)}</p>

@@ -8,7 +8,7 @@ import { state } from './state.js';
 import { registrarEventos } from './controllers/filtrosController.js';
 
 init()
-registrarEventos(atualizarTela)
+registrarEventos(atualizarTela);
 
 async function init() {
 const data = await buscarLivros();
